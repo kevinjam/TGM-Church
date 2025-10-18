@@ -14,6 +14,7 @@ const navigation = [
   { name: "Our DNA", href: "/our-dna" },
   { name: "About", href: "/about" },
   { name: "Sermons", href: "/sermons" },
+  { name: "Radio", href: "/radio" },
   { name: "Events", href: "/events" },
   { name: "Ministries", href: "/ministries" },
   { name: "Contact", href: "/contact" },
