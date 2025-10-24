@@ -30,11 +30,11 @@ export default function SermonsPage() {
   return (
     <div className="min-h-screen">
       {/* Hero Section */}
-      <section className="relative py-12 md:py-16 bg-tgm-background">
+      <section className="relative py-8 md:py-12 bg-tgm-background">
         <Container className="relative z-10">
-          <div className="bg-gradient-tgm-hero rounded-xl sm:rounded-2xl p-6 sm:p-8 md:p-10 lg:p-12 text-center text-white relative overflow-hidden">
-            <div className="absolute inset-0 bg-black/20 rounded-xl sm:rounded-2xl" />
-            <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent rounded-xl sm:rounded-2xl" />
+          <div className="bg-gradient-tgm-hero rounded-xl p-6 md:p-8 text-center text-white relative overflow-hidden">
+            <div className="absolute inset-0 bg-black/20 rounded-xl" />
+            <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent rounded-xl" />
             
             <motion.div
               initial={{ opacity: 0, y: 30 }}
@@ -42,49 +42,28 @@ export default function SermonsPage() {
               transition={{ duration: 0.8 }}
               className="max-w-4xl mx-auto relative z-10"
             >
-              <motion.div
-                initial={{ scale: 0 }}
-                animate={{ scale: 1 }}
-                transition={{ delay: 0.2, duration: 0.6 }}
-                className="mb-4 sm:mb-6 md:mb-8"
-              >
-                <Play className="h-12 w-12 sm:h-16 sm:w-16 md:h-20 md:w-20 mx-auto text-tgm-gold" />
-              </motion.div>
-
-              <motion.h1
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.4, duration: 0.6 }}
-                className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold mb-2 sm:mb-3 md:mb-4"
-              >
+              <Play className="h-12 w-12 md:h-16 md:w-16 mx-auto text-tgm-gold mb-4" />
+              <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-4">
                 Sermons
-              </motion.h1>
-
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.6, duration: 0.6 }}
-                className="mb-6 sm:mb-7 md:mb-8"
-              >
-                <blockquote className="text-base sm:text-lg md:text-xl lg:text-2xl font-medium mb-2">
-                  &ldquo;Faith comes by hearing, and hearing by the Word of God.&rdquo;
-                </blockquote>
-                <cite className="text-sm sm:text-base md:text-lg text-tgm-gold">Romans 10:17</cite>
-              </motion.div>
+              </h1>
+              <blockquote className="text-lg md:text-xl font-medium mb-2">
+                &ldquo;Faith comes by hearing, and hearing by the Word of God.&rdquo;
+              </blockquote>
+              <cite className="text-sm md:text-base text-tgm-gold">Romans 10:17</cite>
             </motion.div>
           </div>
         </Container>
       </section>
 
       {/* Filter and Tabs Section */}
-      <section className="py-8 bg-white border-b border-gray-200">
+      <section className="py-4 bg-white border-b border-gray-200">
         <Container>
           <div className="flex flex-col sm:flex-row gap-4 items-center justify-between">
             {/* Category Filter */}
             <div className="flex items-center gap-3">
-              <Filter className="h-5 w-5 text-gray-600" />
+              <Filter className="h-4 w-4 text-gray-600" />
               <Select value={selectedCategory} onValueChange={setSelectedCategory}>
-                <SelectTrigger className="w-48 border-gray-300">
+                <SelectTrigger className="w-40 border-gray-300">
                   <SelectValue placeholder="Filter by category" />
                 </SelectTrigger>
                 <SelectContent>
@@ -105,7 +84,7 @@ export default function SermonsPage() {
                 onClick={() => setActiveTab("all")}
                 className={activeTab === "all" ? "bg-tgm-gold text-tgm-blue hover:bg-tgm-lightgold" : "text-gray-600 hover:text-gray-800"}
               >
-                All Sermons
+                All
               </Button>
               <Button
                 variant={activeTab === "video" ? "default" : "ghost"}
@@ -132,21 +111,35 @@ export default function SermonsPage() {
 
       {/* Video Sermons Section */}
       {(activeTab === "all" || activeTab === "video") && (
-        <section className="py-12 md:py-16 bg-tgm-background">
+        <section className="py-8 md:py-12 bg-tgm-background">
           <Container>
             <motion.div
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6 }}
               viewport={{ once: true }}
-              className="text-center mb-8 sm:mb-10 md:mb-12"
+              className="text-center mb-6"
             >
-              <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold mb-3 sm:mb-4 md:mb-6 text-gray-800">
+              <h2 className="text-2xl md:text-3xl font-bold mb-3 text-gray-800">
                 Video Sermons
               </h2>
-              <p className="text-base sm:text-lg md:text-xl text-gray-600 max-w-3xl mx-auto px-4 sm:px-0">
-                Watch our inspiring video sermons and experience the Word of God through visual teaching
-              </p>
+              <div className="flex justify-center mb-4">
+                <Button
+                  variant="outline"
+                  size="sm"
+                  className="border-tgm-gold text-tgm-gold hover:bg-tgm-gold hover:text-tgm-blue"
+                  asChild
+                >
+                  <a 
+                    href="https://www.youtube.com/@josephkineneYGE" 
+                    target="_blank" 
+                    rel="noopener noreferrer"
+                  >
+                    <Play className="h-4 w-4 mr-2" />
+                    YouTube Channel
+                  </a>
+                </Button>
+              </div>
             </motion.div>
 
             {videoSermons.length > 0 ? (
@@ -172,21 +165,18 @@ export default function SermonsPage() {
 
       {/* Audio Sermons Section */}
       {(activeTab === "all" || activeTab === "audio") && (
-        <section className="py-12 md:py-16 bg-white">
+        <section className="py-8 md:py-12 bg-white">
           <Container>
             <motion.div
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6 }}
               viewport={{ once: true }}
-              className="text-center mb-8 sm:mb-10 md:mb-12"
+              className="text-center mb-6"
             >
-              <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold mb-3 sm:mb-4 md:mb-6 text-gray-800">
+              <h2 className="text-2xl md:text-3xl font-bold mb-3 text-gray-800">
                 Audio Sermons
               </h2>
-              <p className="text-base sm:text-lg md:text-xl text-gray-600 max-w-3xl mx-auto px-4 sm:px-0">
-                Listen to our audio sermons through Castbox and stream them on any device
-              </p>
             </motion.div>
 
             {audioSermons.length > 0 ? (
@@ -213,31 +203,31 @@ export default function SermonsPage() {
       )}
 
       {/* Call to Action */}
-      <section className="py-12 md:py-16 bg-tgm-blue text-white">
+      <section className="py-8 md:py-12 bg-tgm-blue text-white">
         <Container>
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
             viewport={{ once: true }}
-            className="text-center max-w-3xl mx-auto"
+            className="text-center max-w-2xl mx-auto"
           >
-            <h2 className="text-3xl md:text-4xl font-bold mb-4">
+            <h2 className="text-2xl md:text-3xl font-bold mb-3">
               Join Us for Live Worship
             </h2>
-            <p className="text-xl mb-8 opacity-90">
-              Experience the power of God&apos;s Word in person. Join us for our weekly services and special events.
+            <p className="text-lg mb-6 opacity-90">
+              Experience the power of God&apos;s Word in person.
             </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
+            <div className="flex flex-col sm:flex-row gap-3 justify-center">
               <Button
-                size="lg"
+                size="sm"
                 className="bg-tgm-gold text-tgm-blue hover:bg-tgm-lightgold transition-colors duration-300"
                 asChild
               >
-                <a href="/events">View Service Times</a>
+                <a href="/events">Service Times</a>
               </Button>
               <Button
-                size="lg"
+                size="sm"
                 variant="outline"
                 className="border-white text-white hover:bg-white hover:text-tgm-blue transition-colors duration-300"
                 asChild

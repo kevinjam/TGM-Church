@@ -21,7 +21,7 @@ export function Footer() {
               Connecting Hearts to His Grace (Hebrews 4:16)
             </p>
             <p className="text-sm text-tgm-textmuted">
-              Located in Wakiso Nakawuka, Uganda
+              Located in Nakawuka, Wakiso District, Uganda
             </p>
           </div>
 
@@ -64,19 +64,19 @@ export function Footer() {
               <div className="flex items-center space-x-2">
                 <MapPin className="h-4 w-4 text-tgm-gold" />
                 <span className="text-tgm-textmuted">
-                  Wakiso Nakawuka, Uganda
+                  Nakawuka, Wakiso District, Uganda
                 </span>
               </div>
               <div className="flex items-center space-x-2">
                 <Phone className="h-4 w-4 text-tgm-gold" />
                 <span className="text-tgm-textmuted">
-                  +256 XXX XXX XXX
+                  +256 703 390633
                 </span>
               </div>
               <div className="flex items-center space-x-2">
                 <Mail className="h-4 w-4 text-tgm-gold" />
                 <span className="text-tgm-textmuted">
-                  info@tgmchurch.org
+                  jkinene@gmail.com
                 </span>
               </div>
             </div>
@@ -112,7 +112,7 @@ export function Footer() {
 
         <div className="border-t border-tgm-gold/20 mt-8 pt-8 text-center text-sm text-tgm-textmuted">
           <p>&copy; 2024 TGM - The Gospel Mission. All rights reserved.</p>
-          <p className="mt-1">Built with love for our community in Wakiso Nakawuka, Uganda</p>
+          <p className="mt-1">Built with love for our community in Nakawuka, Wakiso District, Uganda</p>
         </div>
       </Container>
     </footer>

@@ -25,7 +25,7 @@ export default function Events() {
   }
 
   return (
-    <div className="min-h-screen">
+    <div className="min-h-screen bg-gray-100">
       {/* Hero Section */}
       <section className="relative py-20 bg-tgm-background">
         <Container className="relative z-10">
@@ -50,7 +50,7 @@ export default function Events() {
       </section>
 
       {/* Events Content */}
-      <section className="py-20">
+      <section className="py-20 bg-gray-100">
         <Container>
           <Tabs defaultValue="upcoming" className="w-full">
             <TabsList className="grid w-full grid-cols-2 mb-12">
@@ -66,8 +66,8 @@ export default function Events() {
                 viewport={{ once: true }}
                 className="text-center mb-12"
               >
-                <h2 className="text-3xl md:text-4xl font-bold mb-4">Upcoming Events</h2>
-                <p className="text-xl text-muted-foreground">
+                <h2 className="text-3xl md:text-4xl font-bold mb-4 text-gray-800">Upcoming Events</h2>
+                <p className="text-xl text-gray-800">
                   Join us for these upcoming gatherings and activities
                 </p>
               </motion.div>
@@ -103,7 +103,7 @@ export default function Events() {
                       </CardHeader>
                       
                       <CardContent className="space-y-4">
-                        <p className="text-muted-foreground text-sm line-clamp-3">
+                        <p className="text-gray-800 text-sm line-clamp-3">
                           {event.description}
                         </p>
                         
@@ -118,7 +118,7 @@ export default function Events() {
                           </div>
                           <div className="flex items-center gap-2">
                             <MapPin className="h-4 w-4 text-primary" />
-                            <span className="text-muted-foreground">{event.location}</span>
+                            <span className="text-gray-800">{event.location}</span>
                           </div>
                         </div>
                       </CardContent>
@@ -136,8 +136,8 @@ export default function Events() {
                 viewport={{ once: true }}
                 className="text-center mb-12"
               >
-                <h2 className="text-3xl md:text-4xl font-bold mb-4">Past Events</h2>
-                <p className="text-xl text-muted-foreground">
+                <h2 className="text-3xl md:text-4xl font-bold mb-4 text-gray-800">Past Events</h2>
+                <p className="text-xl text-gray-800">
                   Look back at our recent gatherings and celebrations
                 </p>
               </motion.div>
@@ -173,7 +173,7 @@ export default function Events() {
                       </CardHeader>
                       
                       <CardContent className="space-y-4">
-                        <p className="text-muted-foreground text-sm line-clamp-3">
+                        <p className="text-gray-800 text-sm line-clamp-3">
                           {event.description}
                         </p>
                         
@@ -188,7 +188,7 @@ export default function Events() {
                           </div>
                           <div className="flex items-center gap-2">
                             <MapPin className="h-4 w-4 text-primary" />
-                            <span className="text-muted-foreground">{event.location}</span>
+                            <span className="text-gray-800">{event.location}</span>
                           </div>
                         </div>
                       </CardContent>

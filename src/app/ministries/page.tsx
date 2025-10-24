@@ -1,7 +1,8 @@
 "use client"
 
 import { motion } from "framer-motion"
-import { Users, Mail, Calendar, Clock } from "lucide-react"
+import Image from "next/image"
+import { Users, Heart, BookOpen, Users2, Baby, GraduationCap } from "lucide-react"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
 import { ministries } from "@/data/ministries"
@@ -9,9 +10,9 @@ import { Container } from "@/components/layout/container"
 
 export default function Ministries() {
   return (
-    <div className="min-h-screen">
+    <div className="min-h-screen bg-gray-200">
       {/* Hero Section */}
-      <section className="relative py-20 bg-tgm-background">
+      <section className="relative py-20 bg-gradient-to-br from-tgm-background to-tgm-lightgold/10">
         <Container className="relative z-10">
           <div className="bg-gradient-tgm-hero rounded-2xl p-12 md:p-16 text-white relative overflow-hidden">
             <div className="absolute inset-0 bg-black/20 rounded-2xl" />
@@ -23,10 +24,10 @@ export default function Ministries() {
             >
             <Users className="h-16 w-16 mx-auto mb-6 text-tgm-gold" />
             <h1 className="text-5xl md:text-6xl font-bold mb-6">
-              Ministries
+              Our Ministries
             </h1>
             <p className="text-xl md:text-2xl text-tgm-textmuted">
-              Discover how you can serve and grow in our community
+              Discover the grace in every generation.
             </p>
             </motion.div>
           </div>
@@ -34,119 +35,106 @@ export default function Ministries() {
       </section>
 
       {/* Ministries Grid */}
-      <section className="py-20">
+      <section className="py-20 bg-gray-200">
+        <Container>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+            {ministries.map((ministry, index) => {
+              const getIcon = (name: string) => {
+                if (name.includes('Youth')) return Users
+                if (name.includes('Men')) return Users2
+                if (name.includes('Women')) return Heart
+                if (name.includes('Marrieds')) return Heart
+                if (name.includes('Children')) return Baby
+                if (name.includes('Schools')) return GraduationCap
+                return BookOpen
+              }
+              
+              const Icon = getIcon(ministry.name)
+              
+              return (
+                <motion.div
+                  key={ministry.id}
+                  initial={{ opacity: 0, y: 30 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.6, delay: index * 0.1 }}
+                  viewport={{ once: true }}
+                >
+                  <Card className="h-full hover:shadow-lg transition-all duration-300 rounded-2xl overflow-hidden">
+                    <div className="aspect-video relative overflow-hidden">
+                      <Image
+                        src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80"
+                        alt="Open Bible - Ministry"
+                        fill
+                        className="object-cover"
+                      />
+                      <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
+                      <div className="absolute bottom-4 left-4 text-white">
+                        <div className="flex items-center gap-2">
+                          <Icon className="h-5 w-5 text-tgm-gold" />
+                          <span className="text-sm font-medium">Ministry</span>
+                        </div>
+                      </div>
+                    </div>
+                    
+                    <CardHeader className="pb-4">
+                      <CardTitle className="text-xl font-serif text-tgm-blue">{ministry.name}</CardTitle>
+                    </CardHeader>
+                    
+                    <CardContent className="space-y-4">
+                      <p className="text-gray-700 dark:text-gray-700 text-base leading-relaxed">
+                        {ministry.description}
+                      </p>
+                      
+                      {ministry.cta && (
+                        <div className="pt-4">
+                          <Button className="w-full bg-tgm-gold hover:bg-tgm-lightgold text-tgm-blue font-semibold shadow-md">
+                            {ministry.cta}
+                          </Button>
+                        </div>
+                      )}
+                    </CardContent>
+                  </Card>
+                </motion.div>
+              )
+            })}
+          </div>
+        </Container>
+      </section>
+
+      {/* Call to Action */}
+      <section className="py-20 bg-gradient-to-br from-tgm-background to-tgm-lightgold/10">
         <Container>
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
             viewport={{ once: true }}
-            className="text-center mb-16"
+            className="text-center max-w-4xl mx-auto"
           >
-            <h2 className="text-4xl md:text-5xl font-bold mb-6">Our Ministries</h2>
-            <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
-              Each ministry is designed to help you grow in your faith, serve others, 
-              and connect with our community. Find your place and join us in making a difference.
-            </p>
-          </motion.div>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {ministries.map((ministry, index) => (
-              <motion.div
-                key={ministry.id}
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6, delay: index * 0.1 }}
-                viewport={{ once: true }}
-              >
-                <Card className="h-full hover:shadow-lg transition-shadow">
-                  <div className="aspect-video bg-gradient-to-br from-blue-600 to-blue-800 relative overflow-hidden">
-                    <div className="absolute inset-0 bg-black/20" />
-                    <div className="absolute bottom-4 left-4 text-white">
-                      <p className="text-sm opacity-90">Ministry Image</p>
-                    </div>
-                  </div>
-                  
-                  <CardHeader>
-                    <CardTitle className="text-xl">{ministry.name}</CardTitle>
-                  </CardHeader>
-                  
-                  <CardContent className="space-y-4">
-                    <p className="text-muted-foreground text-sm leading-relaxed">
-                      {ministry.description}
-                    </p>
-                    
-                    <div className="space-y-3">
-                      <div className="flex items-center gap-2 text-sm">
-                        <Users className="h-4 w-4 text-primary" />
-                        <span className="font-medium">Leader:</span>
-                        <span className="text-muted-foreground">{ministry.leader}</span>
-                      </div>
-                      
-                      <div className="flex items-center gap-2 text-sm">
-                        <Calendar className="h-4 w-4 text-primary" />
-                        <span className="font-medium">Meeting Day:</span>
-                        <span className="text-muted-foreground">{ministry.meetingDay}</span>
-                      </div>
-                      
-                      <div className="flex items-center gap-2 text-sm">
-                        <Clock className="h-4 w-4 text-primary" />
-                        <span className="font-medium">Time:</span>
-                        <span className="text-muted-foreground">{ministry.meetingTime}</span>
-                      </div>
-                    </div>
-                    
-                    <div className="pt-4 space-y-2">
-                      <Button className="w-full" asChild>
-                        <a href={`mailto:${ministry.contact}`}>
-                          <Mail className="mr-2 h-4 w-4" />
-                          Contact Leader
-                        </a>
-                      </Button>
-                      <Button variant="outline" className="w-full">
-                        Join Ministry
-                      </Button>
-                    </div>
-                  </CardContent>
-                </Card>
-              </motion.div>
-            ))}
-          </div>
-        </Container>
-      </section>
-
-      {/* Call to Action */}
-      <section className="py-20 bg-muted/30">
-        <div className="container text-center">
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
-            viewport={{ once: true }}
-            className="max-w-3xl mx-auto"
-          >
-            <h2 className="text-4xl md:text-5xl font-bold mb-6">
-              Ready to Get Involved?
+            <Heart className="h-16 w-16 mx-auto mb-8 text-tgm-gold" />
+            <h2 className="text-4xl md:text-5xl font-bold mb-6 text-tgm-blue">
+              Find Your Place in Grace
             </h2>
-            <p className="text-xl text-muted-foreground mb-8">
-              There&apos;s a place for everyone in our church family. Whether you&apos;re interested in 
-              worship, youth ministry, children&apos;s programs, or community outreach, we&apos;d love 
-              to help you find your calling.
+            <p className="text-xl text-gray-700 dark:text-gray-600 mb-8 leading-relaxed">
+              Every generation has a unique role in God&apos;s kingdom. Whether you&apos;re a young person 
+              discovering your purpose, a parent raising children in faith, or someone seeking to serve 
+              in education, there&apos;s a ministry waiting for you. Join us as we approach God&apos;s 
+              throne of grace together.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Button size="lg" asChild>
+              <Button size="lg" className="bg-tgm-gold hover:bg-tgm-lightgold text-tgm-blue font-medium" asChild>
                 <a href="/contact">
                   Get In Touch
                 </a>
               </Button>
-              <Button variant="outline" size="lg" asChild>
-                <a href="/about">
+              <Button variant="outline" size="lg" className="border-tgm-gold text-tgm-gold hover:bg-tgm-gold hover:text-tgm-blue" asChild>
+                <a href="/our-dna">
                   Learn More About Us
                 </a>
               </Button>
             </div>
           </motion.div>
-        </div>
+        </Container>
       </section>
     </div>
   )

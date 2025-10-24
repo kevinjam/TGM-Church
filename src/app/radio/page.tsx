@@ -302,13 +302,13 @@ export default function RadioPage() {
                   <strong>Radio Ministry Coordinator:</strong><br />
                   Pastor Kinene<br />
                   Email: info@mytgmchurch.com<br />
-                  Phone: +256 XXX XXX XXX
+                  Phone: +256 703 390633
                 </div>
                 <div>
                   <strong>Technical Support:</strong><br />
                   TGM Media Team<br />
                   Email: media@tgmchurch.org<br />
-                  Phone: +256 XXX XXX XXX
+                  Phone: +256 703 390633
                 </div>
               </div>
             </div>

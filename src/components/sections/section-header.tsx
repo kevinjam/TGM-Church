@@ -23,7 +23,7 @@ export function SectionHeader({ title, subtitle, className, delay = 0 }: Section
         {title}
       </h2>
       {subtitle && (
-        <p className="text-xl text-muted-foreground max-w-3xl mx-auto leading-relaxed">
+        <p className="text-xl text-gray-800 max-w-3xl mx-auto leading-relaxed">
           {subtitle}
         </p>
       )}

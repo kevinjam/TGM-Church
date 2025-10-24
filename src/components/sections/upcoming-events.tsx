@@ -13,7 +13,7 @@ export function UpcomingEvents() {
   const upcomingEvents = events.filter(event => event.isUpcoming).slice(0, 3)
 
   return (
-    <section className="py-20 bg-muted/30">
+    <section className="py-20 bg-gray-200">
         <Container>
         <motion.div
           initial={{ opacity: 0, y: 30 }}
@@ -22,10 +22,10 @@ export function UpcomingEvents() {
           viewport={{ once: true }}
           className="text-center mb-12"
         >
-          <h2 className="text-4xl md:text-5xl font-bold mb-4">
+          <h2 className="text-4xl md:text-5xl font-bold mb-4 text-gray-800">
             Upcoming Events
           </h2>
-          <p className="text-xl text-muted-foreground">
+          <p className="text-xl text-gray-800">
             Join us for worship, fellowship, and community events
           </p>
         </motion.div>
@@ -50,26 +50,26 @@ export function UpcomingEvents() {
                 </div>
                 
                 <CardHeader>
-                  <CardTitle className="text-xl">{event.title}</CardTitle>
+                  <CardTitle className="text-xl text-gray-800">{event.title}</CardTitle>
                 </CardHeader>
                 
                 <CardContent className="space-y-4">
-                  <p className="text-muted-foreground text-sm">
+                  <p className="text-gray-800 text-sm">
                     {event.description}
                   </p>
                   
                   <div className="space-y-2 text-sm">
                     <div className="flex items-center gap-2">
-                      <Calendar className="h-4 w-4 text-primary" />
-                      <span>{formatDate(event.date)}</span>
+                      <Calendar className="h-4 w-4 text-gray-600" />
+                      <span className="text-gray-800">{formatDate(event.date)}</span>
                     </div>
                     <div className="flex items-center gap-2">
-                      <Clock className="h-4 w-4 text-primary" />
-                      <span>{event.time}</span>
+                      <Clock className="h-4 w-4 text-gray-600" />
+                      <span className="text-gray-800">{event.time}</span>
                     </div>
                     <div className="flex items-center gap-2">
-                      <MapPin className="h-4 w-4 text-primary" />
-                      <span className="text-muted-foreground">{event.location}</span>
+                      <MapPin className="h-4 w-4 text-gray-600" />
+                      <span className="text-gray-800">{event.location}</span>
                     </div>
                   </div>
                 </CardContent>

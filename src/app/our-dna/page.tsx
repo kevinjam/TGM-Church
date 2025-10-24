@@ -10,7 +10,7 @@ import { Container } from "@/components/layout/container"
 
 export default function OurDNA() {
   return (
-    <div className="min-h-screen">
+    <div className="min-h-screen bg-gray-200">
       {/* Hero Section */}
       <section className="relative py-24 bg-tgm-background">
         <Container className="relative z-10">
@@ -42,7 +42,7 @@ export default function OurDNA() {
               transition={{ delay: 0.4, duration: 0.6 }}
               className="text-6xl md:text-7xl font-bold font-serif mb-6"
             >
-              Our DNA
+              What Defines Us
             </motion.h1>
             
             <motion.p
@@ -71,8 +71,7 @@ export default function OurDNA() {
       </section>
 
       {/* Vision Section */}
-      <section className="py-20 relative">
-        <div className="absolute inset-0 bg-gradient-to-b from-tgm-background/50 to-transparent" />
+      <section className="py-20 relative bg-gray-200">
         <Container className="relative z-10">
           <SectionHeader 
             title="Vision" 
@@ -142,7 +141,7 @@ export default function OurDNA() {
       </section>
 
       {/* Mission Section */}
-      <section className="py-20">
+      <section className="py-20 bg-gray-200">
         <Container>
           <SectionHeader 
             title="Our Mission" 
@@ -228,7 +227,7 @@ export default function OurDNA() {
       </section>
 
       {/* Focus Areas */}
-      <section className="py-20">
+      <section className="py-20 bg-gray-200">
         <Container>
           <SectionHeader 
             title="Focus Areas" 
@@ -304,8 +303,38 @@ export default function OurDNA() {
         </Container>
       </section>
 
+      {/* Contact Information */}
+      <section className="py-20 bg-tgm-background">
+        <Container>
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8 }}
+            viewport={{ once: true }}
+            className="max-w-4xl mx-auto text-center"
+          >
+            <h2 className="text-4xl md:text-5xl font-bold font-serif mb-8 text-tgm-blue">
+              Get In Touch
+            </h2>
+            <div className="bg-white dark:bg-gray-900 rounded-2xl p-8 shadow-lg">
+              <div className="space-y-4 text-lg text-gray-700 dark:text-gray-300">
+                <p>
+                  <span className="font-semibold text-tgm-gold">Email:</span> jkinene@gmail.com
+                </p>
+                <p>
+                  <span className="font-semibold text-tgm-gold">Phone:</span> +256 703 390633
+                </p>
+                <p>
+                  <span className="font-semibold text-tgm-gold">Address:</span> Nakawuka, Wakiso District, Uganda
+                </p>
+              </div>
+            </div>
+          </motion.div>
+        </Container>
+      </section>
+
       {/* Call to Action */}
-      <section className="py-20 bg-gradient-tgm-hero text-white">
+      <section className="py-20 bg-gray-200 text-gray-800">
         <Container className="text-center">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
@@ -315,10 +344,10 @@ export default function OurDNA() {
             className="max-w-4xl mx-auto"
           >
             <Heart className="h-16 w-16 mx-auto mb-8 text-tgm-gold" />
-            <h2 className="text-4xl md:text-5xl font-bold font-serif mb-6">
+            <h2 className="text-4xl md:text-5xl font-bold font-serif mb-6 text-gray-800">
               Join Our Family
             </h2>
-            <p className="text-xl mb-8 opacity-90 leading-relaxed">
+            <p className="text-xl mb-8 text-gray-600 leading-relaxed">
               Experience the love, unity, and grace that defines our community. 
               We welcome you to be part of our journey of faith and fellowship.
             </p>

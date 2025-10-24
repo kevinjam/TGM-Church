@@ -33,7 +33,7 @@ export default function Contact() {
   }
 
   return (
-    <div className="min-h-screen">
+    <div className="min-h-screen bg-gray-200">
       {/* Hero Section */}
       <section className="relative py-20 bg-tgm-background">
         <Container className="relative z-10">
@@ -46,7 +46,7 @@ export default function Contact() {
               className="text-center max-w-4xl mx-auto relative z-10"
             >
             <Mail className="h-16 w-16 mx-auto mb-6 text-tgm-gold" />
-            <h1 className="text-5xl md:text-6xl font-bold mb-6">
+            <h1 className="text-5xl md:text-6xl font-bold mb-6 text-white">
               Contact Us
             </h1>
             <p className="text-xl md:text-2xl text-tgm-textmuted">
@@ -58,7 +58,7 @@ export default function Contact() {
       </section>
 
       {/* Contact Content */}
-      <section className="py-20">
+      <section className="py-20 bg-gray-200">
         <Container>
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
             {/* Contact Form */}
@@ -70,12 +70,12 @@ export default function Contact() {
             >
               <Card>
                 <CardHeader>
-                  <CardTitle className="text-2xl">Send us a Message</CardTitle>
+                  <CardTitle className="text-2xl text-gray-800">Send us a Message</CardTitle>
                 </CardHeader>
                 <CardContent>
                   <form onSubmit={handleSubmit} className="space-y-6">
                     <div className="space-y-2">
-                      <Label htmlFor="name">Name</Label>
+                      <Label htmlFor="name" className="text-gray-800">Name</Label>
                       <Input
                         id="name"
                         name="name"
@@ -87,7 +87,7 @@ export default function Contact() {
                     </div>
                     
                     <div className="space-y-2">
-                      <Label htmlFor="email">Email</Label>
+                      <Label htmlFor="email" className="text-gray-800">Email</Label>
                       <Input
                         id="email"
                         name="email"
@@ -100,7 +100,7 @@ export default function Contact() {
                     </div>
                     
                     <div className="space-y-2">
-                      <Label htmlFor="message">Message</Label>
+                      <Label htmlFor="message" className="text-gray-800">Message</Label>
                       <Textarea
                         id="message"
                         name="message"
@@ -132,44 +132,44 @@ export default function Contact() {
               {/* Contact Details */}
               <Card>
                 <CardHeader>
-                  <CardTitle className="text-2xl">Get in Touch</CardTitle>
+                  <CardTitle className="text-2xl text-gray-800">Get in Touch</CardTitle>
                 </CardHeader>
                 <CardContent className="space-y-6">
                   <div className="flex items-start gap-4">
-                    <MapPin className="h-6 w-6 text-primary mt-1" />
+                    <MapPin className="h-6 w-6 text-gray-600 mt-1" />
                     <div>
-                      <h3 className="font-semibold mb-1">Address</h3>
-                      <p className="text-muted-foreground">
+                      <h3 className="font-semibold mb-1 text-gray-800">Address</h3>
+                      <p className="text-gray-800">
                         Wakiso Nakawuka, Uganda
                       </p>
                     </div>
                   </div>
                   
                   <div className="flex items-start gap-4">
-                    <Phone className="h-6 w-6 text-primary mt-1" />
+                    <Phone className="h-6 w-6 text-gray-600 mt-1" />
                     <div>
-                      <h3 className="font-semibold mb-1">Phone</h3>
-                      <p className="text-muted-foreground">
-                        +256 XXX XXX XXX
+                      <h3 className="font-semibold mb-1 text-gray-800">Phone</h3>
+                      <p className="text-gray-800">
+                       +256 703 390633
                       </p>
                     </div>
                   </div>
                   
                   <div className="flex items-start gap-4">
-                    <Mail className="h-6 w-6 text-primary mt-1" />
+                    <Mail className="h-6 w-6 text-gray-600 mt-1" />
                     <div>
-                      <h3 className="font-semibold mb-1">Email</h3>
-                      <p className="text-muted-foreground">
+                      <h3 className="font-semibold mb-1 text-gray-800">Email</h3>
+                      <p className="text-gray-800">
                         info@tgmchurch.org
                       </p>
                     </div>
                   </div>
                   
                   <div className="flex items-start gap-4">
-                    <Clock className="h-6 w-6 text-primary mt-1" />
+                    <Clock className="h-6 w-6 text-gray-600 mt-1" />
                     <div>
-                      <h3 className="font-semibold mb-1">Service Times</h3>
-                      <p className="text-muted-foreground">
+                      <h3 className="font-semibold mb-1 text-gray-800">Service Times</h3>
+                      <p className="text-gray-800">
                         Sundays at 10:00 AM
                       </p>
                     </div>
@@ -180,7 +180,7 @@ export default function Contact() {
               {/* Social Media */}
               <Card>
                 <CardHeader>
-                  <CardTitle className="text-2xl">Follow Us</CardTitle>
+                  <CardTitle className="text-2xl text-gray-800">Follow Us</CardTitle>
                 </CardHeader>
                 <CardContent>
                   <div className="flex gap-4">
@@ -203,14 +203,14 @@ export default function Contact() {
               {/* Map Placeholder */}
               <Card>
                 <CardHeader>
-                  <CardTitle className="text-2xl">Find Us</CardTitle>
+                  <CardTitle className="text-2xl text-gray-800">Find Us</CardTitle>
                 </CardHeader>
                 <CardContent>
                   <div className="aspect-video bg-gradient-to-br from-blue-100 to-blue-200 rounded-lg flex items-center justify-center">
                     <div className="text-center text-blue-800">
-                      <MapPin className="h-12 w-12 mx-auto mb-2" />
-                      <p className="font-medium">Google Maps Integration</p>
-                      <p className="text-sm opacity-75">Wakiso Nakawuka, Uganda</p>
+                      <MapPin className="h-12 w-12 mx-auto mb-2 text-gray-600" />
+                      <p className="font-medium text-gray-800">Google Maps Integration</p>
+                      <p className="text-sm text-gray-600">Wakiso Nakawuka, Uganda</p>
                     </div>
                   </div>
                 </CardContent>
@@ -230,10 +230,10 @@ export default function Contact() {
             viewport={{ once: true }}
             className="max-w-3xl mx-auto"
           >
-            <h2 className="text-4xl md:text-5xl font-bold mb-6">
+            <h2 className="text-4xl md:text-5xl font-bold mb-6 text-gray-800">
               Prayer Requests
             </h2>
-            <p className="text-xl text-muted-foreground mb-8">
+            <p className="text-xl text-gray-800 mb-8">
               We believe in the power of prayer. If you have a prayer request or need 
               spiritual support, we&apos;re here for you.
             </p>
