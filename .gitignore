@@ -178,3 +178,6 @@ temp/
 
 # Turbo
 .turbo
+# Uploaded media (runtime directory)
+public/uploads/*
+!public/uploads/.gitkeep

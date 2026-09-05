@@ -4,11 +4,12 @@ import { Calendar, Clock, MapPin } from "lucide-react"
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog"
 import { Button } from "@/components/ui/button"
 import { Badge } from "@/components/ui/badge"
-import { Event } from "@/data/events"
 import { formatDate } from "@/lib/utils"
+import { parseLocalDate } from "@/lib/dates"
+import type { EventView } from "@/lib/db/services/event"
 
 interface EventModalProps {
-  event: Event | null
+  event: EventView | null
   isOpen: boolean
   onClose: () => void
 }
@@ -41,7 +42,7 @@ export function EventModal({ event, isOpen, onClose }: EventModalProps) {
           <div className="space-y-4">
             <div className="flex items-center gap-3">
               <Calendar className="h-5 w-5 text-primary" />
-              <span className="font-medium">{formatDate(event.date)}</span>
+              <span className="font-medium">{formatDate(parseLocalDate(event.date))}</span>
             </div>
             
             <div className="flex items-center gap-3">

@@ -7,38 +7,10 @@ import { Cross, Play, ChevronLeft, ChevronRight } from "lucide-react"
 import Link from "next/link"
 import Image from "next/image"
 import { Container } from "@/components/layout/container"
+import type { HomeHeroSection } from "@/lib/db/services/homepage"
 
-const slides = [
-  {
-    id: 1,
-    title: "TGM",
-    subtitle: "The Gospel Mission",
-    tagline: "Connecting Hearts to His Grace",
-    verse: "Hebrews 4:16",
-    image: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&auto=format&fit=crop&w=1600&h=900&q=80",
-    description: "Experience the power of God's Word through dynamic worship and biblical teaching."
-  },
-  {
-    id: 2,
-    title: "TGM",
-    subtitle: "The Gospel Mission", 
-    tagline: "Building Kingdom Communities",
-    verse: "Matthew 6:10",
-    image: "https://images.unsplash.com/photo-1544027993-37dbfe43562a?ixlib=rb-4.0.3&auto=format&fit=crop&w=1600&h=900&q=80",
-    description: "Join us in advancing God's Kingdom through faith, hope, and love."
-  },
-  {
-    id: 3,
-    title: "TGM",
-    subtitle: "The Gospel Mission",
-    tagline: "Transforming Lives Through Grace",
-    verse: "Ephesians 2:8",
-    image: "https://images.unsplash.com/photo-1472905981516-5ac09f35b7f4?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1600&h=900&q=80",
-    description: "Discover your purpose and calling in Christ through our vibrant community."
-  }
-]
-
-export function HeroSlider() {
+export function HeroSlider({ hero }: { hero: HomeHeroSection }) {
+  const slides = hero.slides
   const [currentSlide, setCurrentSlide] = useState(0)
   const [isAutoPlaying, setIsAutoPlaying] = useState(true)
 
@@ -51,7 +23,7 @@ export function HeroSlider() {
     }, 5000) // Change slide every 5 seconds
 
     return () => clearInterval(interval)
-  }, [isAutoPlaying])
+  }, [isAutoPlaying, slides.length])
 
   const nextSlide = () => {
     setCurrentSlide((prev) => (prev + 1) % slides.length)
@@ -168,14 +140,14 @@ export function HeroSlider() {
                   className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center items-center"
                 >
                   <Button asChild size="default" className="w-full sm:w-auto bg-tgm-gold text-tgm-blue hover:bg-tgm-lightgold text-sm sm:text-base">
-                    <Link href="/about">
-                      Learn More
+                    <Link href={hero.primaryCta.href}>
+                      {hero.primaryCta.label}
                     </Link>
                   </Button>
                   <Button asChild variant="outline" size="default" className="w-full sm:w-auto border-tgm-gold text-tgm-gold hover:bg-tgm-gold hover:text-tgm-blue text-sm sm:text-base">
-                    <Link href="/sermons">
+                    <Link href={hero.secondaryCta.href}>
                       <Play className="mr-2 h-4 w-4" />
-                      Watch Sermons
+                      {hero.secondaryCta.label}
                     </Link>
                   </Button>
                 </motion.div>
@@ -203,8 +175,8 @@ export function HeroSlider() {
                   key={index}
                   onClick={() => goToSlide(index)}
                   className={`w-3 h-3 rounded-full transition-all duration-300 ${
-                    index === currentSlide 
-                      ? 'bg-tgm-gold' 
+                    index === currentSlide
+                      ? 'bg-tgm-gold'
                       : 'bg-white/50 hover:bg-white/70'
                   }`}
                 />
@@ -213,7 +185,7 @@ export function HeroSlider() {
           </div>
         </div>
       </Container>
-      
+
       {/* Scroll Indicator */}
       <motion.div
         initial={{ opacity: 0 }}

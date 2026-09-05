@@ -2,8 +2,8 @@ import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
 import { ThemeProvider } from "@/components/theme-provider";
-import { Navbar } from "@/components/layout/navbar";
-import { Footer } from "@/components/layout/footer";
+import { SiteShell } from "@/components/layout/site-shell";
+import { getSiteSettingsView } from "@/lib/db/services/site-settings";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -23,11 +23,15 @@ export const metadata: Metadata = {
   },
 };
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  // Global church info (falls back to the current hardcoded content when the
+  // database is unavailable, so the public site keeps rendering).
+  const siteSettings = await getSiteSettingsView();
+
   return (
     <html lang="en" suppressHydrationWarning>
       <body className={`${inter.variable} font-sans antialiased`}>
@@ -37,13 +41,7 @@ export default function RootLayout({
           enableSystem
           disableTransitionOnChange
         >
-          <div className="min-h-screen flex flex-col">
-            <Navbar />
-            <main className="flex-1">
-              {children}
-            </main>
-            <Footer />
-          </div>
+          <SiteShell settings={siteSettings}>{children}</SiteShell>
         </ThemeProvider>
       </body>
     </html>

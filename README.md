@@ -57,7 +57,8 @@ src/
 │   ├── ui/              # Shadcn UI components
 │   └── theme-provider.tsx
 ├── data/                 # Mock data for sermons, events, team, ministries
-└── lib/                  # Utility functions
+├── lib/                  # Utility functions
+│   └── db/              # CMS data layer (MongoDB connection + models)
 ```
 
 ## 🎨 Design System
@@ -105,6 +106,26 @@ src/
 - `npm run build` - Build for production
 - `npm run start` - Start production server
 - `npm run lint` - Run ESLint
+- `npm run db:check` - Verify the MongoDB connection
+
+## 🗄️ CMS Database (MongoDB)
+
+The site includes a mini-CMS backend backed by MongoDB. All credentials stay
+server-side — never expose them through `NEXT_PUBLIC_*` variables.
+
+1. Copy the template and fill in your values:
+   ```bash
+   cp .env.example .env
+   ```
+2. Configure the connection (defaults target a local MongoDB):
+   ```
+   MONGODB_URI=mongodb://127.0.0.1:27017
+   MONGODB_DB=tgm_cms
+   ```
+3. Verify the connection works:
+   ```bash
+   npm run db:check
+   ```
 
 ## 📱 Responsive Design
 

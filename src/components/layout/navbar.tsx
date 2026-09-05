@@ -20,7 +20,12 @@ const navigation = [
   { name: "Contact", href: "/contact" },
 ]
 
-export function Navbar() {
+interface NavbarProps {
+  churchDisplayName: string
+  churchShortName: string
+}
+
+export function Navbar({ churchDisplayName, churchShortName }: NavbarProps) {
   const [isOpen, setIsOpen] = useState(false)
   const { theme, setTheme } = useTheme()
 
@@ -38,8 +43,8 @@ export function Navbar() {
             <Cross className="h-8 w-8 text-tgm-gold" />
           </div>
           <div className="flex flex-col">
-            <span className="text-xl font-bold text-tgm-text group-hover:text-tgm-gold transition-colors">TGM</span>
-            <span className="text-xs text-tgm-textmuted group-hover:text-tgm-gold/80 transition-colors">The Gospel Mission</span>
+            <span className="text-xl font-bold text-tgm-text group-hover:text-tgm-gold transition-colors">{churchShortName}</span>
+            <span className="text-xs text-tgm-textmuted group-hover:text-tgm-gold/80 transition-colors">{churchDisplayName}</span>
           </div>
         </Link>
 
@@ -82,10 +87,10 @@ export function Navbar() {
                 <div className="p-2 bg-tgm-gold/10 rounded-lg">
                   <Cross className="h-6 w-6 text-tgm-gold" />
                 </div>
-                <div className="flex flex-col">
-                  <span className="text-lg font-bold text-tgm-text">TGM</span>
-                  <span className="text-xs text-tgm-textmuted">The Gospel Mission</span>
-                </div>
+              <div className="flex flex-col">
+                <span className="text-lg font-bold text-tgm-text">{churchShortName}</span>
+                <span className="text-xs text-tgm-textmuted">{churchDisplayName}</span>
+              </div>
               </div>
               <nav className="flex flex-col space-y-2">
                 {navigation.map((item) => (

@@ -7,12 +7,12 @@ import { Card, CardContent } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
 import { Badge } from "@/components/ui/badge"
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog"
-import { Sermon } from "@/data/sermons"
+import type { SermonView } from "@/lib/db/services/sermon"
 
 interface AudioCardProps {
-  sermon: Sermon
+  sermon: SermonView
   delay?: number
-  onPlay?: (sermon: Sermon) => void
+  onPlay?: (sermon: SermonView) => void
   isPlaying?: boolean
 }
 
