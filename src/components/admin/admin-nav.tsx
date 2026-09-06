@@ -10,6 +10,7 @@ import {
   Users2,
   Users,
   Images,
+  Mail,
   Settings,
   type LucideIcon,
 } from "lucide-react";
@@ -30,6 +31,7 @@ export const ADMIN_NAV_ITEMS: AdminNavItem[] = [
   { href: "/admin/ministries", label: "Ministries", icon: Users2 },
   { href: "/admin/leaders", label: "Leaders", icon: Users },
   { href: "/admin/media", label: "Media", icon: Images },
+  { href: "/admin/contact", label: "Messages", icon: Mail },
   { href: "/admin/settings", label: "Settings", icon: Settings },
 ];
 

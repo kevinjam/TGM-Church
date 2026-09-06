@@ -49,3 +49,7 @@ export const MINISTRY_ICONS = [
   "default",
 ] as const;
 export type MinistryIconKey = (typeof MINISTRY_ICONS)[number];
+
+/** Inbox status for messages submitted from the public Contact page. */
+export const CONTACT_MESSAGE_STATUSES = ["new", "read"] as const;
+export type ContactMessageStatus = (typeof CONTACT_MESSAGE_STATUSES)[number];

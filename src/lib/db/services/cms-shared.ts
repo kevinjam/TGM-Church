@@ -1,7 +1,7 @@
 import { connectToDatabase, PageModel } from "@/lib/db";
 
 /**
- * Shared helpers for CMS-managed page documents (home / about / our-dna).
+ * Shared helpers for CMS-managed page documents (home / about / our-dna / contact).
  * Parsing is defensive: missing or legacy fields fall back to defaults.
  */
 

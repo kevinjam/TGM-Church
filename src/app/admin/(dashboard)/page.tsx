@@ -6,6 +6,7 @@ import {
   Users2,
   Users,
   Images,
+  Mail,
   Plus,
   ArrowRight,
   type LucideIcon,
@@ -18,6 +19,7 @@ import {
   MinistryModel,
   LeaderModel,
   MediaModel,
+  ContactMessageModel,
 } from "@/lib/db";
 import { requireAdmin } from "@/lib/auth/session";
 
@@ -34,13 +36,14 @@ const STAT_DEFS: StatDefinition[] = [
   { key: "ministries", label: "Ministries", icon: Users2 },
   { key: "leaders", label: "Leaders", icon: Users },
   { key: "media", label: "Media", icon: Images },
+  { key: "messages", label: "Messages", icon: Mail },
 ];
 
 const QUICK_ACTIONS = [
   { label: "Edit Homepage", href: "/admin/pages" },
   { label: "Add Event", href: "/admin/events/new" },
   { label: "Add Sermon", href: "/admin/sermons/new" },
-  { label: "Upload Image", href: "/admin/media" },
+  { label: "View Messages", href: "/admin/contact" },
 ];
 
 interface Counts {
@@ -50,6 +53,7 @@ interface Counts {
   ministries: number;
   leaders: number;
   media: number;
+  messages: number;
 }
 
 const EMPTY_COUNTS: Counts = {
@@ -59,6 +63,7 @@ const EMPTY_COUNTS: Counts = {
   ministries: 0,
   leaders: 0,
   media: 0,
+  messages: 0,
 };
 
 interface RecentItem {
@@ -85,22 +90,24 @@ async function loadDashboardData(): Promise<{
   try {
     await connectToDatabase();
 
-    const [pages, events, sermons, ministries, leaders, media] = await Promise.all([
+    const [pages, events, sermons, ministries, leaders, media, messages] = await Promise.all([
       PageModel.countDocuments(),
       EventModel.countDocuments(),
       SermonModel.countDocuments(),
       MinistryModel.countDocuments(),
       LeaderModel.countDocuments(),
       MediaModel.countDocuments(),
+      ContactMessageModel.countDocuments(),
     ]);
 
-    const [latestPages, latestEvents, latestSermons, latestMinistries, latestLeaders] =
+    const [latestPages, latestEvents, latestSermons, latestMinistries, latestLeaders, latestMessages] =
       await Promise.all([
         PageModel.find().sort({ updatedAt: -1 }).limit(1).lean(),
         EventModel.find().sort({ updatedAt: -1 }).limit(1).lean(),
         SermonModel.find().sort({ updatedAt: -1 }).limit(1).lean(),
         MinistryModel.find().sort({ updatedAt: -1 }).limit(1).lean(),
         LeaderModel.find().sort({ updatedAt: -1 }).limit(1).lean(),
+        ContactMessageModel.find().sort({ createdAt: -1 }).limit(1).lean(),
       ]);
 
     const recent = [
@@ -109,11 +116,12 @@ async function loadDashboardData(): Promise<{
       ...collectRecents("Sermon", latestSermons),
       ...collectRecents("Ministry", latestMinistries),
       ...collectRecents("Leader", latestLeaders),
+      ...collectRecents("Message", latestMessages),
     ]
       .sort((a, b) => b.updatedAt.getTime() - a.updatedAt.getTime())
       .slice(0, 6);
 
-    return { counts: { pages, events, sermons, ministries, leaders, media }, recent };
+    return { counts: { pages, events, sermons, ministries, leaders, media, messages }, recent };
   } catch (error) {
     console.error("Dashboard data load failed:", error);
     return {

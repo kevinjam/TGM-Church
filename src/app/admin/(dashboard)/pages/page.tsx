@@ -3,6 +3,7 @@ import { ExternalLink, FileText, Pencil, FolderOpen } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { connectToDatabase, PageModel } from "@/lib/db";
 import { getAboutContent } from "@/lib/db/services/about";
+import { getContactPageContent } from "@/lib/db/services/contact-page";
 import { getHomepageContent } from "@/lib/db/services/homepage";
 import { getOurDnaContent } from "@/lib/db/services/our-dna";
 
@@ -22,6 +23,7 @@ function publicUrl(slug: string): string | null {
   if (slug === "home") return "/";
   if (slug === "about") return "/about";
   if (slug === "our-dna") return "/our-dna";
+  if (slug === "contact") return "/contact";
   return null;
 }
 
@@ -39,7 +41,12 @@ export default async function PagesPage() {
 
   try {
     await connectToDatabase();
-    await Promise.all([getHomepageContent(), getAboutContent(), getOurDnaContent()]);
+    await Promise.all([
+      getHomepageContent(),
+      getAboutContent(),
+      getOurDnaContent(),
+      getContactPageContent(),
+    ]);
     const docs = await PageModel.find()
       .sort({ updatedAt: -1 })
       .lean<Array<PageDocLean>>();

@@ -7,6 +7,7 @@ import {
   type SermonCategory,
 } from "@/lib/db/constants";
 import { saveAboutContent } from "@/lib/db/services/about";
+import { saveContactPageContent } from "@/lib/db/services/contact-page";
 import {
   saveHomepageContent,
   type HomeFeaturedSermon,
@@ -22,12 +23,13 @@ import {
 } from "@/lib/db/services/homepage";
 import { saveOurDnaContent } from "@/lib/db/services/our-dna";
 import { validateAboutPayload } from "./validate-about";
+import { validateContactPagePayload } from "./validate-contact";
 import { validateOurDnaPayload } from "./validate-dna";
 
 /**
  * Content editor endpoint for the CMS-managed pages.
  *
- * Editable slugs: "home", "about", and "our-dna". The payload shape mirrors
+ * Editable slugs: "home", "about", "our-dna", and "contact". The payload shape mirrors
  * each public page's props; everything is trimmed, length-capped, and
  * validated server-side — never trust the client.
  */
@@ -438,7 +440,7 @@ export async function PUT(
   }
 
   const { slug } = await params;
-  if (slug !== "home" && slug !== "about" && slug !== "our-dna") {
+  if (slug !== "home" && slug !== "about" && slug !== "our-dna" && slug !== "contact") {
     return NextResponse.json(
       { error: "This page is not editable yet." },
       { status: 400 }
@@ -468,6 +470,15 @@ export async function PUT(
         return NextResponse.json({ error: result.error }, { status: 400 });
       }
       await saveOurDnaContent(result.data);
+      return NextResponse.json({ ok: true, content: result.data });
+    }
+
+    if (slug === "contact") {
+      const result = validateContactPagePayload(body);
+      if ("error" in result) {
+        return NextResponse.json({ error: result.error }, { status: 400 });
+      }
+      await saveContactPageContent(result.data);
       return NextResponse.json({ ok: true, content: result.data });
     }
 

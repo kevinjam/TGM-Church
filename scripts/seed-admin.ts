@@ -17,9 +17,8 @@ import mongoose from "mongoose";
 const DEFAULT_EMAIL = "admin@tgmchurch.org";
 const DEFAULT_PASSWORD = "ChangeMe123!";
 
-/** Minimal .env loader (KEY=VALUE + comments) used when env vars are absent. */
+/** Minimal .env loader (KEY=VALUE + comments). Fills only keys not already set. */
 function loadLocalEnvFile(): void {
-  if (process.env.MONGODB_URI) return;
   const envPath = path.resolve(process.cwd(), ".env");
   if (!fs.existsSync(envPath)) return;
 
