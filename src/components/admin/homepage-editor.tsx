@@ -10,6 +10,7 @@ import {
   Field,
   SaveBar,
   Section,
+  adminSelectClass,
   type SaveStatus,
 } from "@/components/admin/form-fields";
 import { MediaPicker } from "@/components/admin/media-picker";
@@ -854,7 +855,7 @@ export function HomepageEditor({ initial }: { initial: HomepageContent }) {
                 onChange={(e) =>
                   updateAt(["featuredSermon", "sermon", "category"], e.target.value)
                 }
-                className="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm"
+                className={adminSelectClass}
               >
                 {SERMON_CATEGORIES.map((category) => (
                   <option key={category} value={category}>
@@ -1013,7 +1014,7 @@ export function HomepageEditor({ initial }: { initial: HomepageContent }) {
                     onChange={(e) =>
                       updateAt(["upcomingEvents", "events", index, "category"], e.target.value)
                     }
-                    className="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm"
+                    className={adminSelectClass}
                   >
                     {EVENT_CATEGORIES.map((category) => (
                       <option key={category} value={category}>

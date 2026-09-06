@@ -23,7 +23,8 @@ export default async function MediaPage() {
           <h2 className="text-2xl font-bold text-gray-800">Media Library</h2>
           <p className="mt-1 flex items-center gap-1.5 text-gray-600">
             <Images className="h-4 w-4" />
-            Upload images and copy their links to use anywhere on the website.
+            Upload images to the cloud, then pick them on any page. Changes go
+            live on the public website as soon as you save.
           </p>
         </div>
       </div>

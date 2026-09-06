@@ -101,7 +101,7 @@ export function AdminShell({
   const sectionLabel = currentSectionLabel(pathname);
 
   return (
-    <div className="min-h-screen bg-gray-100">
+    <div className="admin-app min-h-screen bg-gray-100 text-gray-900">
       {/* Desktop sidebar */}
       <aside className="fixed inset-y-0 left-0 z-40 hidden w-64 flex-col bg-tgm-blue lg:flex">
         <Brand />

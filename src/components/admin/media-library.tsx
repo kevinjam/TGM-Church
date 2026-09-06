@@ -21,6 +21,8 @@ import {
   DialogTitle,
 } from "@/components/ui/dialog";
 import type { MediaView } from "@/lib/db/services/media";
+import { uploadMediaFile } from "@/lib/admin-upload-media";
+import { formatUploadLimit } from "@/lib/media-constants";
 
 function formatBytes(bytes: number): string {
   if (bytes < 1024) return `${bytes} B`;
@@ -54,23 +56,10 @@ export function MediaLibrary({
 
     for (const file of files) {
       try {
-        const formData = new FormData();
-        formData.append("file", file);
-        const response = await fetch("/api/media", {
-          method: "POST",
-          body: formData,
-        });
-        const data = (await response.json().catch(() => ({}))) as {
-          error?: string;
-          item?: MediaView;
-        };
-        if (!response.ok || !data.item) {
-          failures.push(`${file.name}: ${data.error ?? "upload failed"}`);
-        } else {
-          uploaded.push(data.item);
-        }
-      } catch {
-        failures.push(`${file.name}: upload failed`);
+        uploaded.push(await uploadMediaFile(file));
+      } catch (err) {
+        const reason = err instanceof Error ? err.message : "upload failed";
+        failures.push(`${file.name}: ${reason}`);
       }
     }
 
@@ -170,8 +159,8 @@ export function MediaLibrary({
           <ImagePlus className="mx-auto mb-4 h-12 w-12 text-gray-300" />
           <h3 className="text-lg font-semibold text-gray-700">No images yet</h3>
           <p className="mx-auto mt-1 max-w-sm text-sm text-gray-500">
-            Upload photos (JPG, PNG, WebP, GIF, or AVIF — up to 5 MB each) to
-            use them across the website.
+            Upload photos (JPG, PNG, WebP, GIF, or AVIF — up to {formatUploadLimit()}{" "}
+            each). Files are stored in the cloud so they stay online after deploy.
           </p>
           <Button
             onClick={() => fileInputRef.current?.click()}
@@ -248,8 +237,8 @@ export function MediaLibrary({
             <DialogTitle className="text-gray-800">Delete this image?</DialogTitle>
             <DialogDescription>
               “{deleteTarget?.filename}” will be removed from the media library
-              and its file deleted. Images currently used on the website will
-              stop displaying.
+              and deleted from cloud storage. Images currently used on the
+              website will stop displaying.
             </DialogDescription>
           </DialogHeader>
           <DialogFooter>

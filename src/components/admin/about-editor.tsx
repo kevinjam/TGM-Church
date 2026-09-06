@@ -10,6 +10,7 @@ import {
   Field,
   SaveBar,
   Section,
+  adminSelectClass,
   type SaveStatus,
 } from "@/components/admin/form-fields";
 import { MediaPicker } from "@/components/admin/media-picker";
@@ -27,9 +28,6 @@ const ICON_LABELS: Record<AboutInfoIcon, string> = {
   calendar: "Calendar",
   community: "Community",
 };
-
-const selectClass =
-  "flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm";
 
 type Draft = AboutContent;
 
@@ -320,7 +318,7 @@ export function AboutEditor({ initial }: { initial: AboutContent }) {
                   id={`info-card-${index}-icon`}
                   value={card.icon}
                   onChange={(e) => updateAt(["info", "cards", index, "icon"], e.target.value)}
-                  className={selectClass}
+                  className={adminSelectClass}
                 >
                   {ABOUT_INFO_ICONS.map((icon) => (
                     <option key={icon} value={icon}>

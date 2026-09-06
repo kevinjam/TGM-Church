@@ -3,6 +3,7 @@ import { connectToDatabase, MediaModel, type MediaAssetDoc } from "@/lib/db";
 export interface MediaView {
   id: string;
   url: string;
+  publicId?: string;
   filename: string;
   alt: string;
   mimeType: string;
@@ -15,6 +16,7 @@ export interface MediaView {
 function toMediaView(doc: {
   _id: unknown;
   url: string;
+  publicId?: string;
   filename: string;
   alt?: string;
   mimeType?: string;
@@ -26,6 +28,7 @@ function toMediaView(doc: {
   return {
     id: String(doc._id),
     url: doc.url,
+    publicId: doc.publicId,
     filename: doc.filename,
     alt: doc.alt ?? "",
     mimeType: doc.mimeType ?? "",
@@ -42,8 +45,16 @@ export async function listMedia(): Promise<MediaView[]> {
   return docs.map(toMediaView);
 }
 
+export async function findMediaByPublicId(publicId: string): Promise<MediaView | null> {
+  await connectToDatabase();
+  const doc = await MediaModel.findOne({ publicId }).lean();
+  if (!doc) return null;
+  return toMediaView(doc as MediaAssetDoc & { _id: unknown });
+}
+
 export async function createMediaEntry(input: {
   url: string;
+  publicId?: string;
   filename: string;
   alt?: string;
   mimeType: string;

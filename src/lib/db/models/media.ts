@@ -3,12 +3,13 @@ import { schemaJsonOptions } from "@/lib/db/schema-helpers";
 
 /**
  * Media library item. Only metadata + a URL are stored in MongoDB; the
- * binary file itself lives on disk / an object store (public/uploads or
- * an external provider), never inside the database.
+ * binary file itself lives on Cloudinary (or local /uploads in development).
  */
 export interface MediaAssetDoc {
-  /** Public URL or path, e.g. "/uploads/church-welcome.jpg" */
+  /** Public CDN URL or local path, e.g. https://res.cloudinary.com/... */
   url: string;
+  /** Cloudinary public_id used to delete/replace the binary. */
+  publicId?: string;
   /** Original file name, e.g. "church-welcome.jpg" */
   filename: string;
   alt?: string;
@@ -25,6 +26,7 @@ export interface MediaAssetDoc {
 const MediaAssetSchema = new Schema<MediaAssetDoc>(
   {
     url: { type: String, required: true, trim: true },
+    publicId: { type: String, trim: true, index: true },
     filename: { type: String, required: true, trim: true },
     alt: { type: String, trim: true },
     mimeType: { type: String, trim: true },

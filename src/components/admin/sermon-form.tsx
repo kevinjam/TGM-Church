@@ -11,6 +11,7 @@ import {
   Field,
   SaveBar,
   Section,
+  adminSelectClass,
   type SaveStatus,
 } from "@/components/admin/form-fields";
 import { MediaPicker } from "@/components/admin/media-picker";
@@ -22,9 +23,6 @@ import {
 import type { SermonInput, SermonView } from "@/lib/db/services/sermon";
 
 const PATH_OR_URL = /^(\/|https?:\/\/)/i;
-
-const selectClass =
-  "flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm";
 
 function blankSermon(): SermonInput {
   return {
@@ -206,7 +204,7 @@ export function SermonForm({
               onChange={(e) =>
                 setField("category", e.target.value as SermonInput["category"])
               }
-              className={selectClass}
+              className={adminSelectClass}
             >
               {SERMON_CATEGORIES.map((category) => (
                 <option key={category} value={category}>
@@ -220,7 +218,7 @@ export function SermonForm({
               id="sermon.type"
               value={draft.type}
               onChange={(e) => setField("type", e.target.value as SermonInput["type"])}
-              className={selectClass}
+              className={adminSelectClass}
             >
               {SERMON_TYPES.map((type) => (
                 <option key={type} value={type}>
@@ -252,7 +250,7 @@ export function SermonForm({
               id="sermon.status"
               value={draft.status}
               onChange={(e) => setField("status", e.target.value as SermonInput["status"])}
-              className={selectClass}
+              className={adminSelectClass}
             >
               {CONTENT_STATUSES.map((item) => (
                 <option key={item} value={item}>

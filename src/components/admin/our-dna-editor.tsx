@@ -9,6 +9,7 @@ import {
   Field,
   SaveBar,
   Section,
+  adminSelectClass,
   type SaveStatus,
 } from "@/components/admin/form-fields";
 import { DNA_ICONS, type DnaIcon } from "@/lib/db/constants";
@@ -35,9 +36,6 @@ const ICON_LABELS: Record<DnaIcon, string> = {
   book: "Book",
   heart: "Heart",
 };
-
-const selectClass =
-  "flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm";
 
 type Draft = OurDnaContent;
 
@@ -387,7 +385,7 @@ export function OurDnaEditor({ initial }: { initial: OurDnaContent }) {
                 <Input id={`root-${index}-title`} value={item.title} onChange={(e) => updateAt(["roots", "items", index, "title"], e.target.value)} maxLength={200} />
               </Field>
               <Field label="Icon" htmlFor={`root-${index}-icon`} required>
-                <select id={`root-${index}-icon`} value={item.icon} onChange={(e) => updateAt(["roots", "items", index, "icon"], e.target.value)} className={selectClass}>
+                <select id={`root-${index}-icon`} value={item.icon} onChange={(e) => updateAt(["roots", "items", index, "icon"], e.target.value)} className={adminSelectClass}>
                   {DNA_ICONS.map((icon) => (
                     <option key={icon} value={icon}>{ICON_LABELS[icon]}</option>
                   ))}
@@ -433,7 +431,7 @@ export function OurDnaEditor({ initial }: { initial: OurDnaContent }) {
                 <Input id={`focus-${index}-title`} value={item.title} onChange={(e) => updateAt(["focus", "items", index, "title"], e.target.value)} maxLength={200} />
               </Field>
               <Field label="Icon" htmlFor={`focus-${index}-icon`} required>
-                <select id={`focus-${index}-icon`} value={item.icon} onChange={(e) => updateAt(["focus", "items", index, "icon"], e.target.value)} className={selectClass}>
+                <select id={`focus-${index}-icon`} value={item.icon} onChange={(e) => updateAt(["focus", "items", index, "icon"], e.target.value)} className={adminSelectClass}>
                   {DNA_ICONS.map((icon) => (
                     <option key={icon} value={icon}>{ICON_LABELS[icon]}</option>
                   ))}

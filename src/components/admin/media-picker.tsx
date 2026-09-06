@@ -12,6 +12,7 @@ import {
   DialogTitle,
 } from "@/components/ui/dialog";
 import type { MediaView } from "@/lib/db/services/media";
+import { uploadMediaFile } from "@/lib/admin-upload-media";
 
 /**
  * "Choose image" dialog for content editors. Lists the uploaded media from
@@ -71,20 +72,10 @@ export function MediaPicker({
     setUploading(true);
     setError(null);
     try {
-      const formData = new FormData();
-      formData.append("file", file);
-      const response = await fetch("/api/media", { method: "POST", body: formData });
-      const data = (await response.json().catch(() => ({}))) as {
-        error?: string;
-        item?: MediaView;
-      };
-      if (!response.ok || !data.item) {
-        setError(data.error ?? "Upload failed. Please try again.");
-      } else {
-        setItems((prev) => [data.item as MediaView, ...prev]);
-      }
-    } catch {
-      setError("Upload failed. Please try again.");
+      const item = await uploadMediaFile(file);
+      setItems((prev) => [item, ...prev]);
+    } catch (err) {
+      setError(err instanceof Error ? err.message : "Upload failed. Please try again.");
     } finally {
       setUploading(false);
       if (fileInputRef.current) fileInputRef.current.value = "";
@@ -109,7 +100,7 @@ export function MediaPicker({
         {/* Upload */}
         <div className="flex items-center justify-between gap-3 rounded-lg border border-gray-200 bg-gray-50 px-3 py-2.5">
           <p className="text-xs text-gray-500">
-            Need a new photo? Upload it here first.
+            Need a new photo? Upload it to the cloud here first.
           </p>
           <input
             ref={fileInputRef}

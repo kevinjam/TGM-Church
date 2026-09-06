@@ -10,8 +10,8 @@ export const metadata: Metadata = {
 
 export default function AdminLoginPage() {
   return (
-    <div className="min-h-screen flex flex-col items-center justify-center bg-gradient-to-br from-tgm-blue via-tgm-blue to-tgm-lightgold/40 px-4 py-12">
-      <Card className="w-full max-w-md shadow-2xl border-0">
+    <div className="admin-app min-h-screen flex flex-col items-center justify-center bg-gradient-to-br from-tgm-blue via-tgm-blue to-tgm-lightgold/40 px-4 py-12">
+      <Card className="w-full max-w-md border-0 bg-white text-gray-900 shadow-2xl">
         <CardContent className="p-8 sm:p-10">
           <div className="text-center mb-8">
             <div className="mx-auto mb-4 flex h-14 w-14 items-center justify-center rounded-xl bg-tgm-gold/10">

@@ -11,6 +11,7 @@ import {
   Field,
   SaveBar,
   Section,
+  adminSelectClass,
   type SaveStatus,
 } from "@/components/admin/form-fields";
 import { MediaPicker } from "@/components/admin/media-picker";
@@ -18,9 +19,6 @@ import { CONTENT_STATUSES, MINISTRY_ICONS } from "@/lib/db/constants";
 import type { MinistryInput, MinistryView } from "@/lib/db/services/ministry";
 
 const PATH_OR_URL = /^(\/|https?:\/\/)/i;
-
-const selectClass =
-  "flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm";
 
 const ICON_LABELS: Record<(typeof MINISTRY_ICONS)[number], string> = {
   youth: "Youth",
@@ -189,7 +187,7 @@ export function MinistryForm({
               onChange={(e) =>
                 setField("icon", e.target.value as MinistryInput["icon"])
               }
-              className={selectClass}
+              className={adminSelectClass}
             >
               <option value="">Automatic</option>
               {MINISTRY_ICONS.map((icon) => (
@@ -204,7 +202,7 @@ export function MinistryForm({
               id="ministry.status"
               value={draft.status}
               onChange={(e) => setField("status", e.target.value as MinistryInput["status"])}
-              className={selectClass}
+              className={adminSelectClass}
             >
               {CONTENT_STATUSES.map((item) => (
                 <option key={item} value={item}>

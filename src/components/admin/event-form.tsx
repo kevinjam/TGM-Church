@@ -11,6 +11,7 @@ import {
   Field,
   SaveBar,
   Section,
+  adminSelectClass,
   type SaveStatus,
 } from "@/components/admin/form-fields";
 import { MediaPicker } from "@/components/admin/media-picker";
@@ -19,9 +20,6 @@ import type { EventInput, EventView } from "@/lib/db/services/event";
 
 const PATH_OR_URL = /^(\/|https?:\/\/)/i;
 const ISO_DATE = /^\d{4}-\d{2}-\d{2}$/;
-
-const selectClass =
-  "flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm";
 
 function blankEvent(): EventInput {
   return {
@@ -182,7 +180,7 @@ export function EventForm({
               onChange={(e) =>
                 setField("category", e.target.value as EventInput["category"])
               }
-              className={selectClass}
+              className={adminSelectClass}
             >
               {EVENT_CATEGORIES.map((category) => (
                 <option key={category} value={category}>
@@ -196,7 +194,7 @@ export function EventForm({
               id="event.status"
               value={draft.status}
               onChange={(e) => setField("status", e.target.value as EventInput["status"])}
-              className={selectClass}
+              className={adminSelectClass}
             >
               {CONTENT_STATUSES.map((item) => (
                 <option key={item} value={item}>

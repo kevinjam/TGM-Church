@@ -6,6 +6,10 @@ import { Label } from "@/components/ui/label";
 
 export type SaveStatus = "idle" | "saving" | "saved" | "error";
 
+/** Native <select> styles that stay readable on the light admin dashboard. */
+export const adminSelectClass =
+  "flex h-10 w-full rounded-md border border-gray-300 bg-white px-3 py-2 text-sm text-gray-900";
+
 /** A titled white card grouping related form fields. */
 export function Section({
   title,

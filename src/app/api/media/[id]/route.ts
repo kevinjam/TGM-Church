@@ -1,7 +1,7 @@
 import { NextResponse } from "next/server";
 import { getSession } from "@/lib/auth/session";
 import { removeMediaEntry } from "@/lib/db/services/media";
-import { deleteStoredFile } from "@/lib/media-storage";
+import { deleteStoredAsset } from "@/lib/media-storage";
 
 export const dynamic = "force-dynamic";
 
@@ -26,7 +26,7 @@ export async function DELETE(
       return NextResponse.json({ error: "Media item not found." }, { status: 404 });
     }
 
-    deleteStoredFile(removed.url);
+    await deleteStoredAsset({ url: removed.url, publicId: removed.publicId });
 
     return NextResponse.json({ ok: true });
   } catch (error) {
